@@ -16,7 +16,6 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 from time import time
 
 def _read_int(n, signed=False, ang=False):
-    
     """
     Reads a number of bytes in a byte stream,
     starting from a specified position.
