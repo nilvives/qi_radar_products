@@ -2,10 +2,10 @@
 # DO NOT CHANGE THE FORMAT OF THIS CONFIGURATION FILE!
 
 ===================== INITIAL UTC TIME [YYYY-MM-DDTHH:MM] =====================
-2026-01-28T11:30
+2025-09-21T16:06
 
 ====================== FINAL UTC TIME [YYYY-MM-DDTHH:MM] ======================
-2026-01-28T11:36
+2025-09-21T16:12
 
 ================ VOLUME SCAN USED ["VOLA", "VOLB" OR "VOLBC"] =================
 VOLB
@@ -17,16 +17,16 @@ VOLB
 1000
 
 ============================= RAW DATA DIRECTORY ==============================
-/home/nvm/nvm_local/data/rad_data/
+/home/user/raw_data/
 
 ========================== PROCESSED DATA DIRECTORY ===========================
-/home/nvm/nvm_local/QI_radar/processed_data/
+/home/user/processed_data/
 
 ======================== SHORT-RANGE DEM DIRECTORY PATH =======================
-/home/nvm/nvm_local/data/DEM/dem_100m_shortRange_wgs84.tif
+/home/user/DEM/dem_100m_shortRange_wgs84.tif
 
 ======================== LONG-RANGE DEM DIRECTORY PATH ========================
-/home/nvm/nvm_local/data/DEM/dem_100m_longRange_wgs84.tif
+/home/user/DEM/dem_100m_longRange_wgs84.tif
 
 ============ TEMPORAL STORAGE NAME FOR INDIVIDUAL RADAR PPI FIELDS ============
 temp

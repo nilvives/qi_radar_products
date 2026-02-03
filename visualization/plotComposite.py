@@ -54,7 +54,7 @@ cmap_elev = mcolors.ListedColormap(colors)
 norm_elev = mcolors.BoundaryNorm(fake_bounds, cmap_elev.N)
 
 colors = ["#1f77b4", "#2ca02c", "#ff7f0e", "#d62728"]  # Blue, Green, Orange, Red
-labels = ['CDV', 'LMI', 'PBE', 'PDA']
+labels = ['CDV', 'PBE', 'PDA', 'LMI']
 which_cmap = mcolors.ListedColormap(colors)
 # which_norm = mcolors.BoundaryNorm(boundaries=np.arange(5)-0.5, ncolors=4)
 to_utm = Transformer.from_crs("EPSG:4326", "EPSG:25831", always_xy=True)
@@ -66,6 +66,8 @@ if sys.argv[1] == "s":
 else:
   save = False
   COMP_path = sys.argv[1]
+
+filename = os.path.basename(COMP_path)[:-3]
 
 ds = xr.open_dataset(COMP_path, engine="scipy")
 Z_comp = ds.Z.values
@@ -121,7 +123,7 @@ Z_comp_plot = np.copy(Z_comp)
 Z_comp_plot[Z_comp == -32] = np.nan
 pc = ax_big.pcolormesh(ds.x, ds.y, Z_comp_plot, vmin=-10, vmax=65, cmap=rad_cmap)
 fig.colorbar(pc, ax=ax_big, fraction=0.035, pad=0.01)
-ax_big.set_title("Z composite")
+ax_big.set_title(filename)
 
 # SMALL top-left: old ax[0,1] -> which radar
 pc = ax_tl.pcolormesh(ds.x, ds.y, which_rad, cmap=which_cmap)
@@ -161,7 +163,6 @@ for axis in [ax_big, ax_tl, ax_bl, ax_br, ax_tr]:
                  edgecolors="black", linewidths=2, zorder=20)
 
 if save:
-  filename = os.path.basename(COMP_path)[:-3]
   plt.savefig(f"{SAVE_dir}/{filename}.png", dpi=200, bbox_inches="tight")
 else:
   plt.show()

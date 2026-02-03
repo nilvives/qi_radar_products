@@ -12,7 +12,7 @@ To see the updated version, go to https://github.com/meteocat/QI_radar.
 The repository structure is as follows:
 
 ```
-qi_radar_products/
+QI_radar/
 ├── MAIN.py                         # Main script orchestrating the pipeline
 ├── Import_config.py                # Loads and parses the configuration file
 ├── FindIRISFiles.py                # Search and locate IRIS radar data files
@@ -20,12 +20,9 @@ qi_radar_products/
 ├── Composite_tools.py              # Compositing radar data from multiple radars
 ├── CAPPI_LUE_tools.py              # Tools for generating CAPPI and LUE products
 |
-├── config.txt                      # Configuration file with processing parameters
+├── config_template.txt             # Configuration file with processing parameters
+├── HIST_TOP12.nc                   # Climatological echo tops data file
 ├── README.md                       # This documentation file
-|
-├── data/                           # Directory containing data files
-│   └── raw/                        # Raw radar data files
-│       └── ... (additional files)
 |
 └── visualization/                  # Directory for visualization outputs
 ```
@@ -36,21 +33,24 @@ qi_radar_products/
 
 ### ▶ **Input Files**
 
-The pipeline requires the following input data:
+The pipeline requires the following input data to be configured in a new configuration file named `config.txt` (take example from the `config_template.txt`):
 
-- **Raw Radar Data Files**: IRIS format (.RAW) files containing polar radar reflectivity data from the XRAD C-band radar network. These files are organized in subdirectories under `data/raw/`, named by radar station and date (e.g., `CDVRAW20250921/` for CDV radar on September 21, 2025). Each file corresponds to a volume scan at specific times (VOL-A, VOL-B, and VOL-C).
+- **Raw Radar Data Files**: IRIS format (.RAW) files containing polar radar reflectivity data from the XRAD C-band radar network. Examples of such files can be found in the following repository: https://github.com/meteocat/QI_radar_data.
 
 - **Auxiliary Data**:
-  - DEM files (GeoTIFF format) for terrain correction.
-  - Climatological echo tops data (NetCDF format) for quality index computation.
+  - DEM files (GeoTIFF format) for terrain correction, specified in `config.txt`.
+  - Climatological echo tops data (NetCDF format) for quality index computation (`HIST_TOP12.nc`).
 
 - **Configuration File**: `config.txt` - A text file specifying processing parameters, including:
   - Initial and final UTC times for processing (note that the final time is not processed).
   - Volume scan type (VOLA, VOLB, or VOLBC). Choose according to the desired products.
   - CAPPI height in meters.
   - Cartesian grid resolution in meters. Note that modifying this parameter will significantly affect processing time.
+  - Raw data directory path.
+  - Processed data directory path (where output products are saved).
   - Paths to Digital Elevation Model (DEM) files for short-range and long-range processing.
-  - Path to echo tops climatology data (NetCDF file).
+  - Temporal storage directory name for individual radar PPI fields.
+  - Path to echo tops 12dBZ climatology file.
 
 ### ▶ **Output Files**
 
